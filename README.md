@@ -13,7 +13,31 @@ One of these Apps is BeamArmor, which is included in this repo. BeamArmor is a n
 6. [BeamArmor Demo: Manual BeamArmor turn ON/OFF](#beamarmor-demo-manual-beamarmor-turn-onoff)
    
 ## Installing the repo
-Installation is done by building srsRAN in the default manner. Create a build directory inside srsRAN, run cmake ../ and make inside the build directory. cmake might output missing modules like for example, msgpack, that have to be installed first before running make. The default configuration file enb.conf can be installed from the srsRAN/build/ directory by executing 'srsran_install_configs.sh'.
+Installation is done by building srsRAN in the default manner:
+
+Clone the repository and create a build directory inside srsRAN:
+```
+git clone https://github.com/ucsdwcsng/beamarmor.git
+cd beamarmor/srsRAN
+mkdir build
+cd build
+cmake ../
+make
+```
+*Note: Cmake might output missing modules like for example, msgpack, that have to be installed first before running make.
+
+You can check to see if installations ran correctly by running `make test`.
+
+### The following should download all needed libraries (Ubuntu 22.04):
+
+```
+sudo apt-get install cmake build-essential make gcc g++ pkg-config libfftw3-dev libmbedtls-dev libyaml-cpp-dev libgtest-dev libpcsclite-dev libuhd-dev soapysdr-tools libsoapysdr-dev libbladerf-dev libmsgpack-dev uhd-host libgnuplot-iostream-dev libzmq3-dev libfltk1.3-dev
+
+pip install msgpack
+```
+Follow the instructions listed here to download Matplot++: [Matplot++ documentation](#https://alandefreitas.github.io/matplotplusplus/)
+
+The default configuration file enb.conf can be installed from the srsRAN/build/ directory by executing `./srsran_install_configs.sh user`.
 
 ## Preparing BeamArmor and MIMO-RIC
 Before running the srsRAN base station with MIMO-RIC and BeamArmor, the operation mode of the srsenb must be set to MIMO and the number of ports must be specified. Set tm = 4 and nof_ports = 2 inside the [enb] paragraph of enb.conf (usually installed in home/.config/srsran/).

@@ -178,8 +178,8 @@ void txrx::run_thread()
   zmq::socket_t subscriber(context_sub, ZMQ_SUB);
   zmq::socket_t publisher(context_pub, ZMQ_PUB);
   subscriber.connect("tcp://localhost:5556");
-  // subscriber.set(zmq::sockopt::subscribe, "");
-  subscriber.setsockopt(ZMQ_SUBSCRIBE, "", 0);
+  subscriber.set(zmq::sockopt::subscribe, "");
+  //subscriber.setsockopt(ZMQ_SUBSCRIBE, "", 0);
   publisher.bind("tcp://*:5555");
   /*
   Boolean variables to decide if:
